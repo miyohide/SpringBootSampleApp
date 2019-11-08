@@ -5,6 +5,23 @@
 </head>
 <body>
     <h1>Todo Index Page</h1>
-    <div th:text="${todos[0].getTodoTitle()}"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Finished?</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="todo : ${todos}">
+                <td th:text="${todo.getTodoId()}"></td>
+                <td th:text="${todo.getTodoTitle()}"></td>
+                <td th:text="${todo.isFinished()}"></td>
+                <td th:text="${todo.getCreatedAt()}"></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
