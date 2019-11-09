@@ -1,0 +1,42 @@
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Todo index</title>
+</head>
+<body>
+    <h1>Todo Index Page</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Finished?</th>
+                <th>Created At</th>
+                <th>Operator</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="todo : ${todos}">
+                <td th:text="${todo.getTodoId()}"></td>
+                <td th:text="${todo.getTodoTitle()}"></td>
+                <td th:text="${todo.isFinished()}"></td>
+                <td th:text="${todo.getCreatedAt()}"></td>
+                <td>
+                    <a href="#" class="btn btn-primary" th:href="@{/todo/{id}(id=${todo.getTodoId()})}">参照</a>
+                    <a href="#" class="btn btn-primary" th:href="@{/todo/{id}/edit(id=${todo.getTodoId()})}">編集</a>
+                    <form th:action="@{/todo/{id}(id=${todo.getTodoId()})}" th:method="delete">
+                        <input type="submit" class="btn btn-danger" value="削除">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+        <a href="/todo/new" class="btn btn-primary">新規作成</a>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
